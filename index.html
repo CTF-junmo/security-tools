@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<!-- 公众号 + QQ -->
+<!-- 联系方式 -->
 <div style="background:linear-gradient(90deg,#22c55e,#16a34a);color:white;padding:26px 16px;text-align:center">
     <div style="max-width:900px;margin:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:16px">
         <div style="background:white;color:#16a34a;padding:10px 20px;border-radius:99px;font-weight:bold">QQ：168626561</div>
@@ -114,14 +114,39 @@
 
 </div>
 
-<!-- 底部 -->
-<div style="background:#111;color:white;padding:30px 16px;text-align:center">
-    <p>© 2025 网络安全工具箱 原创</p>
-    <p style="margin-top:8px">公众号：君陌社区渗透安全笔记</p>
-</div>
+<!-- ================================================== -->
+<!-- 底部区域：包含版权、公众号、以及严格的免责声明 -->
+<!-- ================================================== -->
+<footer style="background:#111;color:white;padding:40px 16px;text-align:center">
+    <div style="max-width:800px;margin:auto">
+        
+        <!-- 1. 主要版权信息 -->
+        <div style="margin-bottom:20px;line-height:1.6">
+            <p>© 2025 网络安全工具箱 版权所有</p>
+            <p>原创作者：君陌 | 公众号：君陌社区渗透安全笔记</p>
+        </div>
+
+        <!-- 2. 严格免责声明 (Disclaimer) -->
+        <div style="background:rgba(255,255,255,0.05);border-left:4px solid #ff4444;padding:15px;border-radius:4px;margin-bottom:20px;text-align:left;font-size:13px;line-height:1.7">
+            <p style="font-weight:bold;color:#ff4444;margin-bottom:8px">📜 免责声明 (Disclaimer)</p>
+            <p style="margin-bottom:5px">1. 本网站提供的所有内容（包括但不限于靶场链接、工具介绍、技术文章）仅用于<br><strong>网络安全技术学习、研究与交流</strong>。</p>
+            <p style="margin-bottom:5px">2. <strong>严禁将本网站提供的任何技术或工具用于非法用途</strong>。未经授权的渗透、攻击、破坏行为均属违法。</p>
+            <p style="margin-bottom:5px">3. 作者君陌对因使用本网站内容而产生的<br><strong>任何直接、间接、偶然、特殊及继生损害概不负责</strong>。</p>
+            <p style="margin-bottom:5px">4. 本网站不提供任何非法黑客工具、恶意代码或攻击脚本的下载。</p>
+            <p>5. 如你违反上述规定进行非法活动，<strong>一切法律责任由行为人自行承担</strong>，与作者及本网站无关。</p>
+        </div>
+
+        <!-- 3. 安全使用声明 -->
+        <div style="font-size:12px;color:#999;line-height:1.6">
+            <p><strong>⚠️ 安全提示：</strong> 网络安全行为需遵守《中华人民共和国网络安全法》及相关法律法规。</p>
+            <p>本网站尊重知识产权，如涉及内容侵权，请联系作者删除。</p>
+        </div>
+
+    </div>
+</footer>
 
 <!-- 弹窗（QQ群按钮也改成复制群号，和公众号功能一致） -->
-<div id="modal" style="position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;z-index:999">
+<div id="modal" style="position:fixed;inset:0;background:#000a;display:flex;align-items:justify-content:center;z-index:999">
     <div style="background:white;border-radius:20px;width:90%;max-width:400px;padding:40px 24px;text-align:center;position:relative">
         <div style="font-size:40px;margin-bottom:20px">🔥</div>
         <h3 style="margin-bottom:10px">欢迎加入安全社区</h3>
@@ -152,7 +177,7 @@ function copyGzh(){
   navigator.clipboard.writeText("君陌社区渗透安全笔记").then(()=>{
     alert("公众号已复制！请在微信搜索关注");
   }).catch(()=>{
-    alert("手动搜索：君陌社区渗透安全笔记");
+    alert("复制失败，请手动搜索：君陌社区渗透安全笔记");
   })
 }
 </script>
