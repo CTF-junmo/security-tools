@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网络安全全能工具箱</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script>
+tailwind.config={theme:{extend:{colors:{primary:'#0D47A1',dark:'#1A237E'}}}}
+</script>
+<style>
+.card{@apply bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all border border-gray-200}
+.badge{@apply px-2 py-1 rounded-full text-xs font-medium}
+.hide{display:none;}
+</style>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- ===================== 防爬 & 防调试 ===================== -->
+<script>
+// 禁止右键
+document.oncontextmenu=e=>e.preventDefault();
+// 禁止选择
+document.onselectstart=e=>e.preventDefault();
+// 禁止F12 / 调试
+document.onkeydown=e=>{
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='J'))||(e.ctrlKey&&e.key==='U'))
+    e.preventDefault();
+};
+// 防控制台调试
+setInterval(()=>{debugger;},1000);
+</script>
+<!-- ======================================================= -->
+
+<!-- 导航 -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+<div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-shield text-primary text-2xl"></i>
+<h1 class="text-xl font-bold">安全工具箱</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6 font-medium">
+<a href="#web" class="hover:text-primary">Web安全</a>
+<a href="#inner" class="hover:text-primary">内网渗透</a>
+<a href="#fofa" class="hover:text-primary">资产测绘</a>
+<a href="#poc" class="hover:text-primary">POC框架</a>
+<a href="#mobile" class="hover:text-primary">移动安全</a>
+<a href="#reverse" class="hover:text-primary">逆向破解</a>
+<a href="#password" class="hover:text-primary">密码破解</a>
+<a href="#wifi" class="hover:text-primary">WiFi安全</a>
+<a href="#code" class="hover:text-primary">代码审计</a>
+<a href="#ai" class="hover:text-primary">AI安全</a>
+</nav>
+</div>
+</header>
+
+<!-- 搜索 -->
+<div class="max-w-6xl mx-auto px-4 py-5">
+<input id="search" oninput="search()" placeholder="🔍 搜索工具：Burp、Nmap、Xray、Frp、蚁剑、冰蝎..."
+class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+</div>
+
+<!-- 横幅 -->
+<section class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-16 text-center">
+<div class="max-w-5xl mx-auto px-4">
+<h1 class="text-3xl md:text-5xl font-bold mb-3">网络安全全能工具箱</h1>
+<p class="text-lg">Web / 内网 / 移动 / 逆向 / 密码 / 测绘 / 审计 全覆盖</p>
+</div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 py-12 space-y-28">
+
+<!-- ==================== Web安全 ==================== -->
+<section id="web">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🌐 Web安全工具</h2>
+
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t1">
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">代理抓包</span>
+<h3 class="font-bold mt-2">Burp Suite</h3>
+<p class="text-xs">用途：Web渗透测试、抓包改包、漏洞扫描</p>
+<p class="text-xs text-green-700">优势：行业标准、插件生态极强</p>
+<a href="https://portswigger.net/burp" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://portswigger.net/support" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">SQL注入</span>
+<h3 class="font-bold mt-2">SQLMap</h3>
+<p class="text-xs">用途：全自动SQL注入检测与利用</p>
+<p class="text-xs text-green-700">优势：支持全数据库、可绕WAF</p>
+<a href="https://sqlmap.org" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/sqlmapproject/sqlmap/wiki/Installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-purple-100 text-purple-800">XSS</span>
+<h3 class="font-bold mt-2">XSStrike</h3>
+<p class="text-xs">用途：智能XSS扫描、自动绕WAF</p>
+<p class="text-xs text-green-700">优势：Payload智能生成</p>
+<a href="https://github.com/s0md3v/XSStrike" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/s0md3v/XSStrike#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-red-100 text-red-800">目录扫描</span>
+<h3 class="font-bold mt-2">Dirsearch</h3>
+<p class="text-xs">用途：后台、目录、敏感文件扫描</p>
+<p class="text-xs text-green-700">优势：字典全、速度快、自带绕过</p>
+<a href="https://github.com/maurosoria/dirsearch" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/maurosoria/dirsearch#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-red-100 text-red-800">Fuzz</span>
+<h3 class="font-bold mt-2">FFuF</h3>
+<p class="text-xs">用途：极速目录、参数、子域名Fuzz</p>
+<p class="text-xs text-green-700">优势：极快、轻量、高并发</p>
+<a href="https://github.com/ffuf/ffuf" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/ffuf/ffuf#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-indigo-100 text-indigo-800">子域名</span>
+<h3 class="font-bold mt-2">OneForAll</h3>
+<p class="text-xs">用途：全能子域名收集</p>
+<p class="text-xs text-green-700">优势：国内适配最强、收集最全面</p>
+<a href="https://github.com/shmilylty/OneForAll" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/shmilylty/OneForAll#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== POC/EXP框架 ==================== -->
+<section id="poc">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🧪 POC/EXP 框架</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t2">
+<div class="card">
+<span class="badge bg-teal-100 text-teal-800">漏洞扫描</span>
+<h3 class="font-bold mt-2">Xray</h3>
+<p class="text-xs">用途：被动/主动漏洞扫描、POC调用</p>
+<p class="text-xs text-green-700">优势：国产最强、误报低、支持批量</p>
+<a href="https://github.com/chaitin/xray" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://docs.xray.cool/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-teal-100 text-teal-800">POC框架</span>
+<h3 class="font-bold mt-2">Pocsuite3</h3>
+<p class="text-xs">用途：开源远程漏洞测试框架</p>
+<p class="text-xs text-green-700">优势：支持自定义POC、批量验证</p>
+<a href="https://github.com/knownsec/pocsuite3" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/knownsec/pocsuite3#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-teal-100 text-teal-800">漏洞利用</span>
+<h3 class="font-bold mt-2">ExpGui</h3>
+<p class="text-xs">用途：可视化漏洞利用工具</p>
+<p class="text-xs text-green-700">优势：一键EXP、新手友好</p>
+<a href="https://github.com/jamy09/ExpGui" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/jamy09/ExpGui#usage" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 内网渗透 ==================== -->
+<section id="inner">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🔐 内网渗透工具</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t3">
+<div class="card">
+<span class="badge bg-orange-100 text-orange-800">隧道</span>
+<h3 class="font-bold mt-2">Frp</h3>
+<p class="text-xs">用途：内网穿透、端口转发</p>
+<p class="text-xs text-green-700">优势：高性能、全平台、配置简单</p>
+<a href="https://github.com/fatedier/frp" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/fatedier/frp#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-red-100 text-red-800">漏洞利用</span>
+<h3 class="font-bold mt-2">Metasploit</h3>
+<p class="text-xs">用途：漏洞利用、木马生成、渗透测试</p>
+<p class="text-xs text-green-700">优势：全球最强渗透框架</p>
+<a href="https://www.metasploit.com" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://docs.metasploit.com/docs/using-metasploit/getting-started/installation.html" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-purple-100 text-purple-800">密码抓取</span>
+<h3 class="font-bold mt-2">Mimikatz</h3>
+<p class="text-xs">用途：Windows内存密码读取、PTH</p>
+<p class="text-xs text-green-700">优势：域渗透必备、密码抓取神器</p>
+<a href="https://github.com/gentilkiwi/mimikatz" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/gentilkiwi/mimikatz/wiki" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-gray-100 text-gray-800">端口扫描</span>
+<h3 class="font-bold mt-2">Nmap</h3>
+<p class="text-xs">用途：主机、端口、服务探测</p>
+<p class="text-xs text-green-700">优势：全网最经典、功能最强</p>
+<a href="https://nmap.org" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://nmap.org/book/inst-windows.html" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-indigo-100 text-indigo-800">域渗透</span>
+<h3 class="font-bold mt-2">BloodHound</h3>
+<p class="text-xs">用途：域内权限关系可视化</p>
+<p class="text-xs text-green-700">优势：一眼看懂域权限路径</p>
+<a href="https://github.com/BloodHoundAD/BloodHound" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/BloodHoundAD/BloodHound#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">代理</span>
+<h3 class="font-bold mt-2">Proxifier</h3>
+<p class="text-xs">用途：程序级全局代理</p>
+<p class="text-xs text-green-700">优势：内网渗透流量转发必备</p>
+<a href="https://www.proxifier.com/download/" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://www.proxifier.com/docs/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 资产测绘 ==================== -->
+<section id="fofa">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🌍 资产测绘</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t4">
+<div class="card">
+<span class="badge bg-green-100 text-green-800">测绘</span>
+<h3 class="font-bold mt-2">Fofa</h3>
+<p class="text-xs">用途：网络空间资产检索</p>
+<p class="text-xs text-green-700">优势：国内数据最全、规则丰富</p>
+<a href="https://fofa.info" target="_blank" class="text-sm text-primary block mt-1">官网 →</a>
+<a href="https://fofa.info/help" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-green-100 text-green-800">测绘</span>
+<h3 class="font-bold mt-2">Hunter</h3>
+<p class="text-xs">用途：网络资产搜索引擎</p>
+<p class="text-xs text-green-700">优势：API友好、批量查询</p>
+<a href="https://hunter.qianxin.com" target="_blank" class="text-sm text-primary block mt-1">官网 →</a>
+<a href="https://hunter.qianxin.com/docs" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-green-100 text-green-800">测绘</span>
+<h3 class="font-bold mt-2">Shodan</h3>
+<p class="text-xs">用途：全球设备搜索引擎</p>
+<p class="text-xs text-green-700">优势：国际覆盖面最广</p>
+<a href="https://www.shodan.io" target="_blank" class="text-sm text-primary block mt-1">官网 →</a>
+<a href="https://developer.shodan.io/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 一句话木马 ==================== -->
+<section>
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🖥️ 一句话管理</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t5">
+<div class="card">
+<span class="badge bg-red-100 text-red-800">木马管理</span>
+<h3 class="font-bold mt-2">蚁剑</h3>
+<p class="text-xs">用途：一句话木马连接、文件管理</p>
+<p class="text-xs text-green-700">优势：开源、跨平台、插件多</p>
+<a href="https://github.com/AntSwordProject/AntSword" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://www.yujian.asia/antsword/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-red-100 text-red-800">木马管理</span>
+<h3 class="font-bold mt-2">冰蝎</h3>
+<p class="text-xs">用途：动态加密一句话管理</p>
+<p class="text-xs text-green-700">优势：流量加密、免杀极强</p>
+<a href="https://github.com/rebeyond/Behinder" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/rebeyond/Behinder#usage" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-red-100 text-red-800">木马管理</span>
+<h3 class="font-bold mt-2">哥斯拉</h3>
+<p class="text-xs">用途：内存马、流量加密</p>
+<p class="text-xs text-green-700">优势：难检测、支持多种脚本</p>
+<a href="https://github.com/BeichenDream/Godzilla" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/BeichenDream/Godzilla#usage" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 移动安全 ==================== -->
+<section id="mobile">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">📱 移动安全</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t6">
+<div class="card">
+<span class="badge bg-purple-100 text-purple-800">安卓逆向</span>
+<h3 class="font-bold mt-2">Apktool</h3>
+<p class="text-xs">用途：APK反编译、回编译、修改资源</p>
+<p class="text-xs text-green-700">优势：免费、稳定、常用</p>
+<a href="https://ibotpeaches.github.io/Apktool/" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://ibotpeaches.github.io/Apktool/install" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-purple-100 text-purple-800">Hook</span>
+<h3 class="font-bold mt-2">Frida</h3>
+<p class="text-xs">用途：APP动态插桩、函数Hook</p>
+<p class="text-xs text-green-700">优势：跨平台、无需重启</p>
+<a href="https://frida.re" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://frida.re/docs/installation/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-purple-100 text-purple-800">反编译</span>
+<h3 class="font-bold mt-2">JADX</h3>
+<p class="text-xs">用途：APK/DEX转Java源码</p>
+<p class="text-xs text-green-700">优势：图形界面、代码可读性高</p>
+<a href="https://github.com/skylot/jadx" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/skylot/jadx#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 逆向破解 ==================== -->
+<section id="reverse">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">⚙️ 逆向破解</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t7">
+<div class="card">
+<span class="badge bg-orange-100 text-orange-800">调试</span>
+<h3 class="font-bold mt-2">x64dbg</h3>
+<p class="text-xs">用途：Windows程序调试、逆向</p>
+<p class="text-xs text-green-700">优势：免费开源、插件丰富</p>
+<a href="https://x64dbg.com" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://x64dbg.com/#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-orange-100 text-orange-800">反编译</span>
+<h3 class="font-bold mt-2">IDA Pro</h3>
+<p class="text-xs">用途：顶级静态反编译</p>
+<p class="text-xs text-green-700">优势：逆向行业标准</p>
+<a href="https://hex-rays.com/ida-pro/" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://hex-rays.com/support/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-gray-100 text-gray-800">查壳</span>
+<h3 class="font-bold mt-2">Exeinfo PE</h3>
+<p class="text-xs">用途：查壳、脱壳、PE信息查看</p>
+<p class="text-xs text-green-700">优势：小巧绿色、识别率高</p>
+<a href="https://github.com/ExeinfoASL/EXEINFO" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/ExeinfoASL/EXEINFO#usage" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 密码破解 ==================== -->
+<section id="password">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🔑 密码破解</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t8">
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">哈希破解</span>
+<h3 class="font-bold mt-2">Hashcat</h3>
+<p class="text-xs">用途：GPU加速哈希破解</p>
+<p class="text-xs text-green-700">优势：世界最快、支持超多算法</p>
+<a href="https://hashcat.net/hashcat/" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://hashcat.net/wiki/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">密码破解</span>
+<h3 class="font-bold mt-2">John</h3>
+<p class="text-xs">用途：多平台密码暴力破解</p>
+<p class="text-xs text-green-700">优势：支持多种哈希格式</p>
+<a href="https://www.openwall.com/john/" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://www.openwall.com/john/doc/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-blue-100 text-blue-800">暴力破解</span>
+<h3 class="font-bold mt-2">Hydra</h3>
+<p class="text-xs">用途：多协议在线爆破</p>
+<p class="text-xs text-green-700">优势：支持30+协议、速度快</p>
+<a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/vanhauser-thc/thc-hydra#install" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== WiFi安全 ==================== -->
+<section id="wifi">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">📶 WiFi安全</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t9">
+<div class="card">
+<span class="badge bg-green-100 text-green-800">WiFi破解</span>
+<h3 class="font-bold mt-2">Aircrack-ng</h3>
+<p class="text-xs">用途：WEP/WPA2密码破解</p>
+<p class="text-xs text-green-700">优势：开源、跨平台</p>
+<a href="https://www.aircrack-ng.org" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://www.aircrack-ng.org/install.html" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-green-100 text-green-800">WPS破解</span>
+<h3 class="font-bold mt-2">Reaver</h3>
+<p class="text-xs">用途：路由器WPS漏洞破解</p>
+<p class="text-xs text-green-700">优势：专门针对WPS、成功率高</p>
+<a href="https://github.com/t6x/reaver-wps-fork-t6x" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/t6x/reaver-wps-fork-t6x#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== 代码审计 ==================== -->
+<section id="code">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🧾 代码审计</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t10">
+<div class="card">
+<span class="badge bg-indigo-100 text-indigo-800">代码审计</span>
+<h3 class="font-bold mt-2">SonarQube</h3>
+<p class="text-xs">用途：代码漏洞、质量检测</p>
+<p class="text-xs text-green-700">优势：企业级、支持多语言</p>
+<a href="https://www.sonarqube.org" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://docs.sonarqube.org/latest/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-indigo-100 text-indigo-800">代码审计</span>
+<h3 class="font-bold mt-2">Semgrep</h3>
+<p class="text-xs">用途：轻量代码漏洞扫描</p>
+<p class="text-xs text-green-700">优势：规则简单、速度快</p>
+<a href="https://semgrep.dev" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://semgrep.dev/docs/" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+<!-- ==================== AI安全 ==================== -->
+<section id="ai">
+<h2 class="text-2xl font-bold mb-6 border-l-4 border-primary pl-3">🤖 AI安全</h2>
+<div class="grid md:grid-cols-3 gap-6 mb-10" id="t11">
+<div class="card">
+<span class="badge bg-teal-100 text-teal-800">提示词安全</span>
+<h3 class="font-bold mt-2">LLM Injection Tester</h3>
+<p class="text-xs">用途：测试大模型提示词注入漏洞</p>
+<p class="text-xs text-green-700">优势：自动化测试、批量检测</p>
+<a href="https://github.com/greshake/llm-security" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/greshake/llm-security#setup" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+
+<div class="card">
+<span class="badge bg-teal-100 text-teal-800">模型安全</span>
+<h3 class="font-bold mt-2">AI Vigil</h3>
+<p class="text-xs">用途：大模型安全检测框架</p>
+<p class="text-xs text-green-700">优势：防止数据泄露、恶意指令</p>
+<a href="https://github.com/ai-vigil/ai-vigil" target="_blank" class="text-sm text-primary block mt-1">下载 →</a>
+<a href="https://github.com/ai-vigil/ai-vigil#installation" target="_blank" class="text-sm text-blue-600 block">教程 →</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- 底部 -->
+<footer class="bg-gray-900 text-white py-10 text-center text-sm">
+<div class="max-w-5xl mx-auto px-4">
+<p>仅限学习使用 · 严禁非法攻击 · 一切后果自负</p>
+<p>© 2025 网络安全工具箱 版权所有</p>
+</div>
+</footer>
+
+<script>
+// 搜索
+function search(){
+let v=document.getElementById('search').value.toLowerCase();
+for(let i=1;i<=11;i++){
+let list=document.getElementById('t'+i);
+if(!list)continue;
+[...list.querySelectorAll('.card')].forEach(c=>{
+c.classList.toggle('hide',!c.innerText.toLowerCase().includes(v))
+})
+}
+}
+</script>
+
+</body>
+</html>
