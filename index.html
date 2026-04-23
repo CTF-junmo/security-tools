@@ -582,8 +582,8 @@ document.body.style.userSelect = 'none';
       <h3 class="text-xl font-bold text-gray-800 mb-2">欢迎加入开源网络安全社区交流技术</h3>
       <p class="text-gray-500 text-sm mb-2">一起学习、分享、成长</p>
       <div class="flex flex-col gap-3">
-        <a href="https://qm.qq.com/q/K0Nx20BQc0" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition text-center">请加群（QQ群：906516846）</a>
-        <button onclick="copyGzh()" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-center">请关注（公众号：君陌社区渗透安全笔记）</button>
+        <button onclick="copyQqGroup()" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full hover:bg-blue-700 transition text-center w-full">请加群（QQ群：906516846）</button>
+        <button onclick="copyGzh()" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition text-center w-full">请关注（公众号：君陌社区渗透安全笔记）</button>
         <button id="closeModal" class="py-2 text-gray-400 hover:text-gray-600 text-sm">已关注，已加群，关闭</button>
       </div>
     </div>
@@ -591,6 +591,15 @@ document.body.style.userSelect = 'none';
 </div>
 
 <script>
+// 复制QQ群号
+function copyQqGroup() {
+  navigator.clipboard.writeText("906516846").then(() => {
+    alert("群号已复制！\n请打开QQ → 搜索群号加入：906516846");
+  }).catch(() => {
+    alert("复制失败，请手动输入群号：906516846");
+  });
+}
+
 // 复制公众号
 function copyGzh(){
   navigator.clipboard.writeText("君陌社区渗透安全笔记").then(()=>{
